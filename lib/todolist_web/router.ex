@@ -23,7 +23,9 @@ defmodule TodolistWeb.Router do
   scope "/api", TodolistWeb do
     pipe_through :api
 
-    resources "/users", UserController, only: [:create, :show]
+    # resources "/users", UserController, only: [:create, :show]
+    # Définition de la route, le controleur que ça utilise, la function ou ça pointe
+    post "/sign_up", UserController, :create
   end
 
   # Other scopes may use custom stacks.

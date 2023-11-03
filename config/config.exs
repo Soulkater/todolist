@@ -61,6 +61,13 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+# Guardian config
+# Il faut bien spécifier le nom du projet
+config :todolist, Todolist.Guardian,
+  issuer: "todolist",
+  # Génération d'une secret key : mix guardian.gen.secret
+  secret_key: "XJ9KIDEbPhhYzf3VDzNWzq7Eivw5sjiVGhCEgwv8v/cHcSPBomvKp8oYv4/Jf3k9"
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"

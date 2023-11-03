@@ -3,6 +3,7 @@ defmodule TodolistWeb.UserController do
 
   alias Todolist.Accounts
   alias Todolist.Accounts.User
+  alias Todolist.Guardian
 
   action_fallback TodolistWeb.FallbackController
 
@@ -12,11 +13,12 @@ defmodule TodolistWeb.UserController do
   end
 
   def create(conn, %{"user" => user_params}) do
-    with {:ok, %User{} = user} <- Accounts.create_user(user_params) do
-      conn
-      |> put_status(:created)
-      |> put_resp_header("location", ~p"/api/users/#{user}")
-      |> render(:show, user: user)
+    # Tentative de création d'un nouvel utilisateur en utilisant les paramètres de l'utilisateur
+    with {:ok, %User{} = user} <- Accounts.create_user(user_params),
+         # Génération d'un token JWT en utilisant Guardian et les informations de l'utilisateur
+         {:ok, token, _claims} <- Guardian.encode_and_sign(user) do
+      # Renvoi d'une réponse JSON contenant le token JWT en tant que "jwt"
+      conn |> render("jwt.json", jwt: token)
     end
   end
 

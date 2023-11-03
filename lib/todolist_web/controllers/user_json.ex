@@ -24,4 +24,10 @@ defmodule TodolistWeb.UserJSON do
       password_hash: user.password_hash
     }
   end
+
+  # Pour affichier le jwt dans le body
+  def render("jwt.json", %{jwt: jwt}) do
+    %{jwt: jwt}
+  end
+
 end
