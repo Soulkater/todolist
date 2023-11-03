@@ -20,6 +20,12 @@ defmodule TodolistWeb.Router do
     get "/", PageController, :home
   end
 
+  scope "/api", TodolistWeb do
+    pipe_through :api
+
+    resources "/users", UserController, only: [:create, :show]
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", TodolistWeb do
   #   pipe_through :api

@@ -50,7 +50,14 @@ defmodule Todolist.MixProject do
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
-      {:plug_cowboy, "~> 2.5"}
+      {:plug_cowboy, "~> 2.5"},
+      # ...default dependencies omitted for brevity
+      {:comeonin, "~> 5.3"},
+      {:pbkdf2_elixir, "~> 2.0"},
+      {:guardian, "~> 1.0"},
+      # {:comeonin, "~> 4.0"},
+      # {:bcrypt_elixir, "~> 3.0"},
+      # {:guardian, "~> 1.0"}
     ]
   end
 
