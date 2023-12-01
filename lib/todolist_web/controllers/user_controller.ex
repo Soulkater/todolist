@@ -22,6 +22,15 @@ defmodule TodolistWeb.UserController do
     end
   end
 
+  def sign_in(conn, %{"email" => email, "password" => password}) do
+    case Accounts.token_sign_in(email, password) do
+      {:ok, token, _claims} ->
+        conn |> render("jwt.json", jwt: token)
+      _ ->
+        {:error, :unauthorized}
+    end
+  end
+
   def show(conn, %{"id" => id}) do
     user = Accounts.get_user!(id)
     render(conn, :show, user: user)

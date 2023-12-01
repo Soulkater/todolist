@@ -26,6 +26,7 @@ defmodule TodolistWeb.Router do
     # resources "/users", UserController, only: [:create, :show]
     # Définition de la route, le controleur que ça utilise, la function ou ça pointe
     post "/sign_up", UserController, :create
+    post "/sign_in", UserController, :sign_in
   end
 
   # Other scopes may use custom stacks.

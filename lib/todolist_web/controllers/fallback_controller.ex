@@ -21,4 +21,11 @@ defmodule TodolistWeb.FallbackController do
     |> put_view(html: TodolistWeb.ErrorHTML, json: TodolistWeb.ErrorJSON)
     |> render(:"404")
   end
+
+  def call(conn, {:error, :unauthorized}) do
+    conn
+    |> put_status(:unauthorized)
+    |> json(%{error: "Login error"})
+  end
+
 end
